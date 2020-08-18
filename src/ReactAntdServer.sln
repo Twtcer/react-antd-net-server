@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactAntdServer.Api", "ReactAntdServer.Api\ReactAntdServer.Api.csproj", "{4A0A8354-349B-4295-94C9-B9FC3567E7C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactAntdServer.Api", "ReactAntdServer.Api\ReactAntdServer.Api.csproj", "{4A0A8354-349B-4295-94C9-B9FC3567E7C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactAntdServer.Model", "ReactAntdServer.Model\ReactAntdServer.Model.csproj", "{3D7CDCB7-10BB-4052-ABC6-A10A9D4432CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactAntdServer.Model", "ReactAntdServer.Model\ReactAntdServer.Model.csproj", "{3D7CDCB7-10BB-4052-ABC6-A10A9D4432CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactAntdServer.Service", "ReactAntdServer.Service\ReactAntdServer.Service.csproj", "{A8459DE9-E89C-4BFA-96AD-3908ACA6D026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactAntdServer.Service", "ReactAntdServer.Service\ReactAntdServer.Service.csproj", "{A8459DE9-E89C-4BFA-96AD-3908ACA6D026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactAntdServer.Migration", "ReactAntdServer.Migration\ReactAntdServer.Migration.csproj", "{9DF90EF5-8798-4D0C-874F-57805889A5CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactAntdServer.Migration", "ReactAntdServer.Migration\ReactAntdServer.Migration.csproj", "{9DF90EF5-8798-4D0C-874F-57805889A5CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactAntdServer.Test", "ReactAntdServer.Test\ReactAntdServer.Test.csproj", "{BBA8C1A8-B78E-40FF-AE73-FFC5C6AABA46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9DF90EF5-8798-4D0C-874F-57805889A5CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DF90EF5-8798-4D0C-874F-57805889A5CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DF90EF5-8798-4D0C-874F-57805889A5CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA8C1A8-B78E-40FF-AE73-FFC5C6AABA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA8C1A8-B78E-40FF-AE73-FFC5C6AABA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA8C1A8-B78E-40FF-AE73-FFC5C6AABA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA8C1A8-B78E-40FF-AE73-FFC5C6AABA46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
