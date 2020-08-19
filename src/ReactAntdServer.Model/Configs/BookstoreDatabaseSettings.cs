@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ReactAntdServer.Api.Models
+namespace ReactAntdServer.Model.Config
 {
     public class BookstoreDatabaseSettings: IBookstoreDatabaseSettings
     {
