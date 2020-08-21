@@ -33,7 +33,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.V2_Blogtest">
+        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.V2_BookTest">
             <summary>
             获取列表v2
             </summary>
