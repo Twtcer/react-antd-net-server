@@ -1,13 +1,18 @@
 using System;
 using System.Linq;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens; 
 using ReactAntdServer.Api.Utils;
 using ReactAntdServer.Model.Config;
+using ReactAntdServer.Service;
+using ReactAntdServer.Service.Base;
 using ReactAntdServer.Services; 
 
 namespace ReactAntdServer.Api
@@ -33,8 +38,35 @@ namespace ReactAntdServer.Api
             //add singleton service
             services.AddSingleton<BookService>();
 
+            //add scoped service
+            services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
+
             services.AddControllers()
                .AddNewtonsoftJson(options => options.UseMemberCasing());
+
+            //register jwt token
+            services.Configure<TokenModel>(Configuration.GetSection("Token"));
+            var token = Configuration.GetSection("Token").Get<TokenModel>();
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true, 
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.Secret)),
+                    ValidIssuer = token.Issuer,
+                    ValidAudience = token.Audience,
+                    ValidateIssuer = false,
+                    ValidateAudience = false 
+                };
+            });
 
             //register swagger
             services.AddSwaggerGen(option =>
@@ -64,7 +96,9 @@ namespace ReactAntdServer.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            } 
+
+            app.UseAuthentication();
 
             //config swagger
             app.UseSwagger();
@@ -79,6 +113,8 @@ namespace ReactAntdServer.Api
             });
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

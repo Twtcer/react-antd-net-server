@@ -19,5 +19,9 @@
     <ProjectReference Include="..\ReactAntdServer.Service\ReactAntdServer.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 
 </Project>
