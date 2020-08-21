@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReactAntdServer.Api</name>
+    </assembly>
+    <members>
+        <member name="T:ReactAntdServer.Api.Attributes.CustomRouteAttribute">
+            <summary>
+            自定义路由 /api/{version}/[controler]/[action]
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Attributes.CustomRouteAttribute.GroupName">
+            <summary>
+            分组名称,是来实现接口 IApiDescriptionGroupNameProvider
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Utils.ApiVersions)">
+            <summary>
+            自定义路由构造函数，继承基类路由
+            </summary>
+            <param name="version"></param>
+        </member>
+        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Utils.ApiVersions,System.String)">
+            <summary>
+            自定义版本+路由构造函数，继承基类路由
+            </summary>
+            <param name="actionName"></param>
+            <param name="version"></param>
+        </member>
+        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.Get">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.V2_Blogtest">
+            <summary>
+            获取列表v2
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:ReactAntdServer.Api.Utils.ApiVersions.v1">
+            <summary>
+            v1
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Api.Utils.ApiVersions.v2">
+            <summary>
+            v2
+            </summary>
+        </member>
+    </members>
+</doc>

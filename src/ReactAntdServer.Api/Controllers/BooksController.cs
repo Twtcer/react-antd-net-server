@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+using ReactAntdServer.Api.Attributes;
+using ReactAntdServer.Api.Utils;
 using ReactAntdServer.Model;
-using ReactAntdServer.Services;
+using ReactAntdServer.Services; 
 
-namespace ReactAntdServer.Api.Controllers
+namespace ReactAntdServer.Api.Controllers.v1
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [CustomRoute]
     [ApiController]
     public class BooksController: ControllerBase
     {
@@ -18,9 +21,25 @@ namespace ReactAntdServer.Api.Controllers
             _bookService = bookService;
         }
 
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<List<Book>> Get() =>
             _bookService.Get();
+
+        /// <summary>
+        /// 获取列表v2
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [CustomRoute(ApiVersions.v2, "BookTest")]
+        public async Task<object> V2_BookTest()
+        {
+            return Ok(new { status = 220, data = "This is version 2" });
+
+        }
 
         [HttpGet("{id:length(24)}",Name ="GetBook")]
         public ActionResult<Book> Get(string id)
@@ -62,7 +81,7 @@ namespace ReactAntdServer.Api.Controllers
             }
             _bookService.Remove(id);
             return NoContent();
-        }
+        } 
 
     }
-}
+} 
