@@ -5,7 +5,7 @@ using ReactAntdServer.Model.Dto;
 
 namespace ReactAntdServer.Service.Base
 {
-    public interface IUserService
+    public interface IManagerService
     {
         bool IsValild(LoginRequestDTO req);
     }

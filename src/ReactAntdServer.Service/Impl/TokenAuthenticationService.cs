@@ -13,10 +13,10 @@ namespace ReactAntdServer.Service
 {
     public class TokenAuthenticationService : IAuthenticateService
     {
-        private readonly IUserService _userService;
+        private readonly IManagerService _userService;
         private readonly TokenModel _token;
 
-        public TokenAuthenticationService( IUserService userService, IOptions<TokenModel> token)
+        public TokenAuthenticationService(IManagerService userService, IOptions<TokenModel> token)
         {
             _userService = userService;
             _token = token.Value;

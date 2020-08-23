@@ -37,11 +37,12 @@ namespace ReactAntdServer.Api
 
             //add singleton service
             services.AddSingleton<BookService>();
-
             //add scoped service
             services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
-            services.AddScoped<IUserService, UserService>();
-
+            //改为基类注入，子service继承
+            //有问题
+            //services.AddScoped<IBaseService, BaseService>();
+            services.AddScoped<IManagerService, ManagerService>(); 
             services.AddControllers()
                .AddNewtonsoftJson(options => options.UseMemberCasing());
 

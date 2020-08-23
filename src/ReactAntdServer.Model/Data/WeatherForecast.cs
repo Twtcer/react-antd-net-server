@@ -1,6 +1,8 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ReactAntdServer.Api
+namespace ReactAntdServer.Model.Data
 {
     public class WeatherForecast
     {

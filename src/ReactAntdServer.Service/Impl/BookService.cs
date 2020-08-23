@@ -3,19 +3,18 @@ using System.Linq;
 using MongoDB.Driver;
 using ReactAntdServer.Model;
 using ReactAntdServer.Model.Config;
+using ReactAntdServer.Service;
+using ReactAntdServer.Service.Base;
 
 namespace ReactAntdServer.Services
 {
-    public class BookService
+    public class BookService:BaseContextService<Book>
     {
         private readonly IMongoCollection<Book> _books;
 
-        public BookService(IBookstoreDatabaseSettings settings)
+        public BookService(IBookstoreDatabaseSettings settings):base(settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            _books = database.GetCollection<Book>(settings.BooksCollectionName);
+            _books = GetCollection(settings.BooksCollectionName);
         }
 
         public List<Book> Get() =>
