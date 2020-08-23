@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReactAntdServer.Api.Attributes;
+using ReactAntdServer.Api.Utils;
 using ReactAntdServer.Model.Dto;
 using ReactAntdServer.Service.Base;
 
 namespace ReactAntdServer.Api.Controllers
 {
-    [CustomRoute]
+    //[CustomRoute]
     [ApiController]
     public class AuthenticationController: ControllerBase
     {
@@ -18,7 +19,7 @@ namespace ReactAntdServer.Api.Controllers
         public AuthenticationController(IAuthenticateService authenticate)
         {
             this._authService = authenticate;
-        }
+        } 
 
         [AllowAnonymous]
         [HttpPost, Route("requestToken")]
@@ -35,7 +36,27 @@ namespace ReactAntdServer.Api.Controllers
                 return Ok(token);
             }
 
-            return BadRequest("Invalid Request"); 
+            return Unauthorized("401 Unauthorized");
         }
+
+
+        [HttpPost, AllowAnonymous]
+        [Route("api/v1/auth/manager_login")]
+        public ActionResult Login(LoginRequestDTO request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid Request");
+            }
+
+            var token = string.Empty;
+            if (_authService.IsAuthenticated(request, out token))
+            {
+                return Ok(token);
+            }
+
+            return Unauthorized("401 Unauthorized");
+        }
+
     }
 }

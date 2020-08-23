@@ -8,7 +8,7 @@ using ReactAntdServer.Api.Utils;
 using ReactAntdServer.Model;
 using ReactAntdServer.Services; 
 
-namespace ReactAntdServer.Api.Controllers.v1
+namespace ReactAntdServer.Api.Controllers
 {
     //[Route("api/[controller]")]
     [CustomRoute]
@@ -33,12 +33,11 @@ namespace ReactAntdServer.Api.Controllers.v1
         /// 获取列表v2
         /// </summary>
         /// <returns></returns>
+        [CustomRoute(ApiVersions.v2,   "BookTest")]
         [HttpGet]
-        [CustomRoute(ApiVersions.v2, "BookTest")]
         public async Task<object> V2_BookTest()
         {
             return Ok(new { status = 220, data = "This is version 2" });
-
         }
 
         [HttpGet("{id:length(24)}",Name ="GetBook")]

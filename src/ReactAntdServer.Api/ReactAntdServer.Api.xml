@@ -20,20 +20,19 @@
             </summary>
             <param name="version"></param>
         </member>
-        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Utils.ApiVersions,System.String)">
-            <summary>
-            自定义版本+路由构造函数，继承基类路由
-            </summary>
-            <param name="actionName"></param>
-            <param name="version"></param>
-        </member>
-        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.Get">
+        <member name="M:ReactAntdServer.Api.Controllers.Admin.ProductsController.Get">
             <summary>
             获取列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ReactAntdServer.Api.Controllers.v1.BooksController.V2_BookTest">
+        <member name="M:ReactAntdServer.Api.Controllers.BooksController.Get">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Controllers.BooksController.V2_BookTest">
             <summary>
             获取列表v2
             </summary>

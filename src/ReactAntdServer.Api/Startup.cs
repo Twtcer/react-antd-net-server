@@ -8,11 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens; 
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using ReactAntdServer.Api.Utils;
 using ReactAntdServer.Model.Config;
 using ReactAntdServer.Service;
 using ReactAntdServer.Service.Base;
+using ReactAntdServer.Service.Impl;
 using ReactAntdServer.Services; 
 
 namespace ReactAntdServer.Api
@@ -37,6 +39,7 @@ namespace ReactAntdServer.Api
 
             //add singleton service
             services.AddSingleton<BookService>();
+            services.AddSingleton<ProductService>();
             //add scoped service
             services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
             //改为基类注入，子service继承
@@ -47,8 +50,8 @@ namespace ReactAntdServer.Api
                .AddNewtonsoftJson(options => options.UseMemberCasing());
 
             //register jwt token
-            services.Configure<TokenModel>(Configuration.GetSection("Token"));
-            var token = Configuration.GetSection("Token").Get<TokenModel>();
+            services.Configure<TokenModel>(Configuration.GetSection("JwtToken"));
+            var token = Configuration.GetSection("JwtToken").Get<TokenModel>();
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -74,7 +77,7 @@ namespace ReactAntdServer.Api
             {
                 typeof(ApiVersions).GetEnumNames().ToList().ForEach(version =>
                 {
-                    option.SwaggerDoc(version, new Microsoft.OpenApi.Models.OpenApiInfo
+                    option.SwaggerDoc(version, new OpenApiInfo
                     {   
                         Version = version,
                         Title = $"{ApiName} document",
@@ -86,7 +89,16 @@ namespace ReactAntdServer.Api
                             Url = new Uri("https://www.cnblogs.com/landwind/")
                         }
                     });
+                    option.AddSecurityDefinition($"Bearer{version}", new OpenApiSecurityScheme
+                    {
+                        Description = "Authorization format : Bearer {token}",
+                        Name = "Authorization",
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey
+                    });//api界面新增authorize按钮
                 });
+
+               //option.OperationFilter<ad>
             });
 
         }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ReactAntdServer.Model.Data;
 
-namespace ReactAntdServer.Api.Controllers.v1
+namespace ReactAntdServer.Api.Controllers
 { 
     [ApiController]
     [Route("api/[controller]")]

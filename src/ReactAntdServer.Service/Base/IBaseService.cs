@@ -7,11 +7,11 @@ namespace ReactAntdServer.Service.Base
 {
     public interface IBaseService
     {  
-        IMongoDatabase GetMongoDatabase();
+        //IMongoDatabase GetMongoDatabase();
     }
 
     public interface IBaseService<T> : IBaseService
     {
-        IMongoCollection<T> GetMongoCollection(string collectionName);
+        //IMongoCollection<T> GetMongoCollection(string collectionName);
     }
 }

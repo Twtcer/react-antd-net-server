@@ -10,7 +10,8 @@ namespace ReactAntdServer.Model.Config
         public string DatabaseName { get; set; }
         public string ConnectionString { get; set; }
         public string BooksCollectionName { get; set; }
-        public string ManagersCollectionName { get; set; } 
+        public string ManagersCollectionName { get; set; }
+        public string ProductsCollectionName { get; set; }
     }
 
     public interface IBookstoreDatabaseSettings
@@ -19,5 +20,6 @@ namespace ReactAntdServer.Model.Config
         string BooksCollectionName { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
+        string ProductsCollectionName { get; set; }
     }
 }

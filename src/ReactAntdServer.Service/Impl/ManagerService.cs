@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BCrypt.Net;
 using MongoDB.Driver;
 using ReactAntdServer.Model;
 using ReactAntdServer.Model.Config;
@@ -11,16 +12,26 @@ namespace ReactAntdServer.Service
 {
     public class ManagerService : BaseContextService<Manager>, IManagerService
     {
-        private readonly IMongoCollection<Manager> _mangers;
-        public ManagerService(IBookstoreDatabaseSettings settings):base(settings)
+        public ManagerService(IBookstoreDatabaseSettings settings) : base(settings, settings.ManagersCollectionName)
         {
-            _mangers = GetCollection(settings.ManagersCollectionName);
-        } 
+
+        }
 
         public bool IsValild(LoginRequestDTO req)
         {
-            var find = _mangers.Find(a => a.UserName == req.Username && a.Password == req.Password); 
-            return find==null?false:true;
+            var find = Collection.Find(a => a.UserName == req.Username).FirstOrDefault();
+            if (find == null)
+            {
+                return false;
+            }
+            if (BCrypt.Net.BCrypt.Verify(req.Password, find.Password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

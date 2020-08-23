@@ -31,7 +31,7 @@ namespace ReactAntdServer.Service
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_token.Secret));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var jwtToken = new JwtSecurityToken(_token.Issuer, _token.Audience, claims, expires: DateTime.Now.AddMinutes(_token.AccessExpiration));
+            var jwtToken = new JwtSecurityToken(_token.Issuer, _token.Audience, claims, expires: DateTime.Now.AddHours(_token.AccessExpiration));
 
             token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
             return true;
