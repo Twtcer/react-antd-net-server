@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using ReactAntdServer.Api.Utils;
+using ReactAntdServer.Api.Enums;
 
 namespace ReactAntdServer.Api.Attributes
 {

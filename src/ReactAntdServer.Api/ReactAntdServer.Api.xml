@@ -14,7 +14,7 @@
             分组名称,是来实现接口 IApiDescriptionGroupNameProvider
             </summary>
         </member>
-        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Utils.ApiVersions)">
+        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Enums.ApiVersions)">
             <summary>
             自定义路由构造函数，继承基类路由
             </summary>
@@ -25,6 +25,11 @@
             获取列表
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:ReactAntdServer.Api.Controllers.BooksController">
+            <summary>
+            书籍信息
+            </summary>
         </member>
         <member name="M:ReactAntdServer.Api.Controllers.BooksController.Get">
             <summary>
@@ -38,15 +43,213 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="F:ReactAntdServer.Api.Utils.ApiVersions.v1">
+        <member name="F:ReactAntdServer.Api.Enums.ApiVersions.v1">
             <summary>
             v1
             </summary>
         </member>
-        <member name="F:ReactAntdServer.Api.Utils.ApiVersions.v2">
+        <member name="F:ReactAntdServer.Api.Enums.ApiVersions.v2">
             <summary>
             v2
             </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionHandler.Schemes">
+            <summary>
+            验证方案提供对象
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Jwt.PermissionHandler.#ctor(Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider)">
+            <summary>
+            构造注入
+            </summary>
+            <param name="provider"></param>
+        </member>
+        <member name="M:ReactAntdServer.Api.Jwt.PermissionHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,ReactAntdServer.Api.Jwt.PermissionRequirement)">
+            <summary>
+            重写异步权限处理
+            </summary>
+            <param name="context"></param>
+            <param name="requirement"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.Permissions">
+            <summary>
+            用户权限集合
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.DeniedAction">
+            <summary>
+            无权限
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.ClaimaType">
+            <summary>
+            认证授权类型
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.LoginPath">
+            <summary>
+            请求路径
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.Issuer">
+            <summary>
+            发行人
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.Audience">
+            <summary>
+            订阅人
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.Expiration">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Jwt.PermissionRequirement.SigningCredentials">
+            <summary>
+            签名验证
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.PermissionItem.Role">
+            <summary>
+            用户或角色或其他凭据名称
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.PermissionItem.Url">
+            <summary>
+            请求Url
+            </summary>
+        </member>
+        <member name="T:ReactAntdServer.Api.Utils.ConfigurationHelper">
+            <summary>
+            配置文件帮助类
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.JwtHelper.IssueJWT(ReactAntdServer.Api.Utils.TokenModelJWT)">
+            <summary>
+            颁发JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.JwtHelper.SerializeJWT(System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="jwtStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ReactAntdServer.Api.Utils.TokenModelJWT">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Utils.TokenModelJWT.Uid">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Utils.TokenModelJWT.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Utils.TokenModelJWT.Work">
+            <summary>
+            职能
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            扩展 IEnumerable foreach
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToInt(System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToMoney(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToMoney(System.Object,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToString(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToString(System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToDecimal(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToDecimal(System.Object,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToDate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToDate(System.Object,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ObjToBool(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -7,6 +7,6 @@ namespace ReactAntdServer.Service.Base
 {
     public interface IAuthenticateService
     {
-        bool IsAuthenticated(LoginRequestDTO request, out string token);
+        bool IsAuthenticated(LoginRequest request, out string token);
     }
 }

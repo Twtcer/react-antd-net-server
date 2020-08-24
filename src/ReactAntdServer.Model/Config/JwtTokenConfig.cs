@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReactAntdServer.Model.Config
 {
-    public class TokenModel
+    public class JwtTokenConfig
     {
         //[JsonProperty("secret")]
         public string Secret { get; set; }

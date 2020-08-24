@@ -19,6 +19,8 @@ namespace ReactAntdServer.Model
         public DateTime CreationTime { get; set; }
         [BsonElement("updatedAt")]
         public DateTime UpdationTime { get; set; }
+        [BsonElement("roles")]
+        public string Roles { get; set; }
         [BsonElement("__v")]
         public int Version { get; set; }
     }

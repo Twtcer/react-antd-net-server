@@ -23,7 +23,7 @@ namespace ReactAntdServer.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost, Route("requestToken")]
-        public ActionResult RequestToken([FromBody] LoginRequestDTO request)
+        public ActionResult RequestToken([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace ReactAntdServer.Api.Controllers
 
         [HttpPost, AllowAnonymous]
         [Route("api/v1/auth/manager_login")]
-        public ActionResult Login(LoginRequestDTO request)
+        public ActionResult Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
             {

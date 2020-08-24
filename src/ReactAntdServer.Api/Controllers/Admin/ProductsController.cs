@@ -5,15 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReactAntdServer.Api.Attributes;
-using ReactAntdServer.Api.Utils;
+using ReactAntdServer.Api.Enums;
 using ReactAntdServer.Model.Data;
 using ReactAntdServer.Service.Impl;
 
 namespace ReactAntdServer.Api.Controllers.Admin
 {
     [CustomRoute(ApiVersions.v1,"admin")]
-    [ApiController]
-    [Authorize]
+    [ApiController] 
     public class ProductsController: ControllerBase
     {
         private readonly ProductService _productService;
@@ -27,6 +26,7 @@ namespace ReactAntdServer.Api.Controllers.Admin
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize("Permission")]
         public ActionResult<List<Product>> Get() =>
             _productService.Get(); 
    

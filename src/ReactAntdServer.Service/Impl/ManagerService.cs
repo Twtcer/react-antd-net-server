@@ -17,14 +17,14 @@ namespace ReactAntdServer.Service
 
         }
 
-        public bool IsValild(LoginRequestDTO req)
+        public bool IsValild(LoginRequest req,out Manager manager)
         {
-            var find = Collection.Find(a => a.UserName == req.Username).FirstOrDefault();
-            if (find == null)
-            {
+            manager = Collection.Find(a => a.UserName == req.Username).FirstOrDefault(); 
+            if (manager == null)
+            { 
                 return false;
             }
-            if (BCrypt.Net.BCrypt.Verify(req.Password, find.Password))
+            if (BCrypt.Net.BCrypt.Verify(req.Password, manager.Password))
             {
                 return true;
             }

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ReactAntdServer.Model.Dto
 {
-    public class LoginRequestDTO
+    public class LoginRequest
     {
         [Required]
         [JsonProperty("username")]
