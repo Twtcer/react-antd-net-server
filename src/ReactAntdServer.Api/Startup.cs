@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using ReactAntdServer.Api.Enums;
 using ReactAntdServer.Api.Jwt;
 using ReactAntdServer.Model.Config;
@@ -34,15 +35,25 @@ namespace ReactAntdServer.Api
         }
 
         public IConfiguration Configuration { get; }
-        private const string ApiName="ReactAntdServer.Api";
+        private const string ApiName = "ReactAntdServer.Api";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //mvc
-            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
-            services.AddControllers()
-               .AddNewtonsoftJson(options => options.UseMemberCasing());
+            //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            services
+                .AddControllers()//options=>options.EnableEndpointRouting = false 
+               .AddNewtonsoftJson(options =>
+               {
+                   //options.UseMemberCasing();
+                   //不使用驼峰样式的key
+                   options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                   //忽略循环引用
+                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                   //设置时间格式
+                   options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm";
+               });
 
             #region Register Mongodb Config
             services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
@@ -81,9 +92,9 @@ namespace ReactAntdServer.Api
                         }
                     });
                     option.OrderActionsBy(a => a.RelativePath);
-                }); 
+                });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"; 
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
                 //token绑定
                 option.AddSecurityDefinition($"Bearer", new OpenApiSecurityScheme
@@ -102,7 +113,7 @@ namespace ReactAntdServer.Api
             var jwtToken = Configuration.GetSection("JwtToken").Get<JwtTokenConfig>();
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtToken.Secret));
 
-            var permissions = new List<PermissionItem>(); 
+            var permissions = new List<PermissionItem>();
             // 角色与接口的权限要求参数
             var permissionRequirement = new PermissionRequirement(
                 "/api/denied",// 拒绝授权的跳转地址（目前无用）
@@ -112,12 +123,12 @@ namespace ReactAntdServer.Api
                 jwtToken.Audience,//订阅者
                 new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),//签名凭据
                 expiration: TimeSpan.FromMinutes(jwtToken.AccessExpiration)//接口的过期时间
-                ); 
+                );
             services.AddAuthorization(option =>
             {
                 option.AddPolicy("Permission", policy =>
                      policy.Requirements.Add(permissionRequirement)
-                 ) ;
+                 );
             });
             #endregion
 
@@ -129,9 +140,9 @@ namespace ReactAntdServer.Api
           })
           .AddJwtBearer(x =>
           {
-                //x.RequireHttpsMetadata = false;
-                //x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+              //x.RequireHttpsMetadata = false;
+              //x.SaveToken = true;
+              x.TokenValidationParameters = new TokenValidationParameters
               {
                   ValidateIssuerSigningKey = true,
                   IssuerSigningKey = signingKey,
@@ -184,16 +195,18 @@ namespace ReactAntdServer.Api
                     c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"{ApiName} {version}");
                     c.RoutePrefix = string.Empty;//根路径展示swagger
                 });
-            });   
+            });
             #endregion
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 endpoints.MapControllers();
             });
         }

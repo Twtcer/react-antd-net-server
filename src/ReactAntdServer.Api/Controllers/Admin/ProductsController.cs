@@ -9,10 +9,11 @@ using ReactAntdServer.Api.Enums;
 using ReactAntdServer.Model.Data;
 using ReactAntdServer.Service.Impl;
 
-namespace ReactAntdServer.Api.Controllers.Admin
+namespace ReactAntdServer.Api.Controllers
 {
     [CustomRoute(ApiVersions.v1,"admin")]
     [ApiController] 
+    [Authorize]
     public class ProductsController: ControllerBase
     {
         private readonly ProductService _productService;
@@ -26,7 +27,7 @@ namespace ReactAntdServer.Api.Controllers.Admin
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize("Permission")]
+        //[Authorize("Permission")]
         public ActionResult<List<Product>> Get() =>
             _productService.Get(); 
    

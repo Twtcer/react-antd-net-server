@@ -11,6 +11,7 @@ namespace ReactAntdServer.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [JsonIgnore]
         public string Id { get; set; }
 
         [BsonElement("Name")] 

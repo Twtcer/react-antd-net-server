@@ -7,8 +7,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 using MongoDB.Libmongocrypt;
 using ReactAntdServer.Api.Utils;
@@ -18,6 +20,8 @@ namespace ReactAntdServer.Api.Jwt
 {
     public class PermissionHandler : AuthorizationHandler<PermissionRequirement>
     {
+        private readonly IHttpContextAccessor _accessor; 
+
         /// <summary>
         /// 验证方案提供对象
         /// </summary>
@@ -31,6 +35,12 @@ namespace ReactAntdServer.Api.Jwt
         {
             Schemes = schemes;
         }
+
+        //public PermissionHandler(IAuthenticationSchemeProvider schemes, IHttpContextAccessor accessor )
+        //{
+        //    Schemes = schemes;
+        //    _accessor = accessor;
+        //}
 
         /// <summary>
         /// 重写异步权限处理
