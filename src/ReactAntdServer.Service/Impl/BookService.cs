@@ -10,7 +10,7 @@ namespace ReactAntdServer.Services
 {
     public class BookService:BaseContextService<Book>
     { 
-        public BookService(IBookstoreDatabaseSettings settings):base(settings,settings.ProductsCollectionName)
+        public BookService(IBookstoreDatabaseSettings settings):base(settings,settings.BooksCollectionName)
         { 
         }
 
