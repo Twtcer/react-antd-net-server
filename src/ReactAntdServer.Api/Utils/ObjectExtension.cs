@@ -1,19 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ReactAntdServer.Api.Utils
 {
+    /// <summary>
+    /// 扩展方法
+    /// </summary>
     public static  class ObjectExtension
     {
         /// <summary>
-        /// 扩展 IEnumerable foreach
+        /// 扩展model验证错误信息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="action"></param>
-        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        /// <param name="modelState"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static string GetValidationSummary(this ModelStateDictionary modelState, string separator = "\r\n")
+        {
+            if (modelState.IsValid) return null; 
+            var error = new StringBuilder(); 
+            foreach (var item in modelState)
+            {
+                var state = item.Value;
+                var message = state.Errors.FirstOrDefault(p => !string.IsNullOrWhiteSpace(p.ErrorMessage))?.ErrorMessage;
+                if (string.IsNullOrWhiteSpace(message))
+                {
+                    message = state.Errors.FirstOrDefault(o => o.Exception != null)?.Exception.Message;
+                }
+                if (string.IsNullOrWhiteSpace(message)) continue;
+
+                if (error.Length > 0)
+                {
+                    error.Append(separator);
+                }
+
+                error.Append(message);
+            } 
+            return error.ToString();
+        } 
+
+    /// <summary>
+    /// 扩展 IEnumerable foreach
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="action"></param>
+    public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             foreach (T element in source)
                 action(element);

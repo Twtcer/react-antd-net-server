@@ -8,7 +8,7 @@ using ReactAntdServer.Model.Config;
 using ReactAntdServer.Model.Dto;
 using ReactAntdServer.Service.Base;
 
-namespace ReactAntdServer.Service
+namespace ReactAntdServer.Service.Impl
 {
     public class ManagerService : BaseContextService<Manager>, IManagerService
     {

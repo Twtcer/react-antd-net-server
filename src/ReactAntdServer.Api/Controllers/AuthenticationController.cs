@@ -21,23 +21,23 @@ namespace ReactAntdServer.Api.Controllers
             this._authService = authenticate;
         } 
 
-        [AllowAnonymous]
-        [HttpPost, Route("requestToken")]
-        public ActionResult RequestToken([FromBody] LoginRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid Request");
-            }
+        //[AllowAnonymous]
+        //[HttpPost, Route("requestToken")]
+        //public ActionResult RequestToken([FromBody] LoginRequest request)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest("Invalid Request");
+        //    }
 
-            var token = string.Empty;
-            if (_authService.IsAuthenticated(request, out token))
-            {
-                return Ok(token);
-            }
+        //    var token = string.Empty;
+        //    if (_authService.IsAuthenticated(request, out token))
+        //    {
+        //        return Ok(token);
+        //    }
 
-            return Unauthorized("401 Unauthorized");
-        }
+        //    return Unauthorized("401 Unauthorized");
+        //}
 
 
         [HttpPost, AllowAnonymous]

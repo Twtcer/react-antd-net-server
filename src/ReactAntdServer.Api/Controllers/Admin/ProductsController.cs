@@ -11,7 +11,11 @@ using ReactAntdServer.Service.Impl;
 
 namespace ReactAntdServer.Api.Controllers
 {
+    /// <summary>
+    /// 产品
+    /// </summary>
     [CustomRoute(ApiVersions.v1,"admin")]
+    //[Produces("application/json")]
     [ApiController] 
     [Authorize]
     public class ProductsController: ControllerBase
@@ -28,7 +32,7 @@ namespace ReactAntdServer.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         //[Authorize("Permission")]
-        public ActionResult<List<Product>> Get() =>
+        public ActionResult<List<Product>> GetPageList() =>
             _productService.Get(); 
    
 

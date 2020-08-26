@@ -20,6 +20,11 @@
             </summary>
             <param name="version"></param>
         </member>
+        <member name="T:ReactAntdServer.Api.Controllers.ProductsController">
+            <summary>
+            产品
+            </summary>
+        </member>
         <member name="M:ReactAntdServer.Api.Controllers.ProductsController.Get">
             <summary>
             获取列表

@@ -6,7 +6,7 @@ using ReactAntdServer.Model.Config;
 using ReactAntdServer.Service;
 using ReactAntdServer.Service.Base;
 
-namespace ReactAntdServer.Services
+namespace ReactAntdServer.Service.Impl
 {
     public class BookService:BaseContextService<Book>
     { 

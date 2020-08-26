@@ -18,12 +18,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using ReactAntdServer.Api.Enums;
+using ReactAntdServer.Api.Filters;
 using ReactAntdServer.Api.Jwt;
-using ReactAntdServer.Model.Config;
-using ReactAntdServer.Service;
+using ReactAntdServer.Model.Config; 
 using ReactAntdServer.Service.Base;
 using ReactAntdServer.Service.Impl;
-using ReactAntdServer.Services;
 
 namespace ReactAntdServer.Api
 {
@@ -43,7 +42,17 @@ namespace ReactAntdServer.Api
             //mvc
             //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
             services
-                .AddControllers()//options=>options.EnableEndpointRouting = false 
+                .AddControllers(options =>
+                {
+                    #region 注册自定义拦截器 
+                    options.Filters.Add(typeof(ValidateModelAttribute));
+                    options.RespectBrowserAcceptHeader = true;
+                    //options.EnableEndpointRouting = false;
+                    #endregion  
+                }) 
+                .ConfigureApiBehaviorOptions(options =>
+                { 
+                }) 
                .AddNewtonsoftJson(options =>
                {
                    //options.UseMemberCasing();
@@ -54,6 +63,7 @@ namespace ReactAntdServer.Api
                    //设置时间格式
                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm";
                });
+           
 
             #region Register Mongodb Config
             services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
@@ -94,8 +104,11 @@ namespace ReactAntdServer.Api
                     option.OrderActionsBy(a => a.RelativePath);
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
+                //controller
+                var xmlControllerFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlControllerFile),true);
+                var xmModelFile = $"ReactAntdServer.Model.xml";
+                option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmModelFile), true);
                 //token绑定
                 option.AddSecurityDefinition($"Bearer", new OpenApiSecurityScheme
                 {
@@ -104,6 +117,11 @@ namespace ReactAntdServer.Api
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
+
+                var security = new OpenApiSecurityRequirement {
+                    { new OpenApiSecurityScheme { Name = "Bearer" }, new List<string>() }
+                };
+                option.AddSecurityRequirement(security);
             });
             #endregion 
 

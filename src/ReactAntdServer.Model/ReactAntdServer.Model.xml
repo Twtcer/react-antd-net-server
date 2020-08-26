@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReactAntdServer.Model</name>
+    </assembly>
+    <members>
+        <member name="P:ReactAntdServer.Model.Book.Id">
+            <summary>
+            ObjectId
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Book.BookName">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Book.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Book.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Book.Author">
+            <summary>
+            Author
+            </summary>
+        </member>
+    </members>
+</doc>

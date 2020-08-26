@@ -43,7 +43,12 @@ namespace ReactAntdServer.Api.Controllers
             return Ok(new { status = 220, data = "This is version 2" });
         }
 
-        [HttpGet("{id:length(24)}",Name ="GetBook")]
+        /// <summary>
+        /// format 特征可以设置返回特定的格式类型
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:length(24)}.{format?}", Name ="GetBook")]
         public ActionResult<Book> Get(string id)
         {
             var book = _bookService.Get(id);
