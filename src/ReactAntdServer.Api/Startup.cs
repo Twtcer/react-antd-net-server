@@ -40,12 +40,18 @@ namespace ReactAntdServer.Api
         public void ConfigureServices(IServiceCollection services)
         {
             //mvc
-            //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            //services.AddMvc(options =>
+            //{
+            //    //options.Filters.Add<ValidateModelAttribute>();
+            //})
+            //    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
             services
                 .AddControllers(options =>
                 {
                     #region 注册自定义拦截器 
-                    options.Filters.Add(typeof(ValidateModelAttribute));
+                    options.Filters.Add<ValidateModelAttribute>();
+                    options.Filters.Add<ApiResultFilterAttribute>();
+                    options.Filters.Add<CustomExceptionAttribute>();
                     options.RespectBrowserAcceptHeader = true;
                     //options.EnableEndpointRouting = false;
                     #endregion  
@@ -63,7 +69,25 @@ namespace ReactAntdServer.Api
                    //设置时间格式
                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm";
                });
-           
+
+            #region Register  CORS 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin", policy =>
+                {
+                    policy.AllowAnyOrigin()//允许任何源
+                        .AllowAnyMethod()//允许任何方法
+                        .AllowAnyHeader();//允许任何头
+                                          //.AllowCredentials(); //允许Cookies
+                });
+                options.AddPolicy("AllowSpecificOrigin", policy =>
+                {
+                    policy.WithOrigins("http://localhost:13571")
+                        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .WithHeaders("authorization");
+                });
+            });
+            #endregion
 
             #region Register Mongodb Config
             services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
@@ -123,8 +147,8 @@ namespace ReactAntdServer.Api
                 };
                 option.AddSecurityRequirement(security);
             });
-            #endregion 
-
+            #endregion
+             
             #region Authentication  授权
 
             services.Configure<JwtTokenConfig>(Configuration.GetSection("JwtToken"));

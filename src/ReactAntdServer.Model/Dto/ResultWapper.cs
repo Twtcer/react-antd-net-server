@@ -168,6 +168,11 @@ namespace ReactAntdServer.Model.Dto
             return new ResultWrapper<T>(ResultCode.Ok, message, data);
         }
 
+        public static ResultWrapper<T> ErrorData<T>(T data, ResultCode code)
+        {
+            return new ResultWrapper<T>(code, code.DisplayName(), data);
+        }
+
         /// <summary>
         /// 
         /// </summary>

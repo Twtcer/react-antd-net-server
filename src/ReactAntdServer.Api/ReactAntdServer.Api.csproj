@@ -28,6 +28,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://jenkins-x.io/schemas/jx-requirements.json" appsettings_1json__JsonSchema="https://json.schemastore.org/behat" /></VisualStudio></ProjectExtensions>
 
 

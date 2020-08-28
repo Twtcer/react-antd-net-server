@@ -4,28 +4,12 @@
         <name>ReactAntdServer.Api</name>
     </assembly>
     <members>
-        <member name="T:ReactAntdServer.Api.Attributes.CustomRouteAttribute">
-            <summary>
-            自定义路由 /api/{version}/[controler]/[action]
-            </summary>
-        </member>
-        <member name="P:ReactAntdServer.Api.Attributes.CustomRouteAttribute.GroupName">
-            <summary>
-            分组名称,是来实现接口 IApiDescriptionGroupNameProvider
-            </summary>
-        </member>
-        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Enums.ApiVersions)">
-            <summary>
-            自定义路由构造函数，继承基类路由
-            </summary>
-            <param name="version"></param>
-        </member>
         <member name="T:ReactAntdServer.Api.Controllers.ProductsController">
             <summary>
             产品
             </summary>
         </member>
-        <member name="M:ReactAntdServer.Api.Controllers.ProductsController.Get">
+        <member name="M:ReactAntdServer.Api.Controllers.ProductsController.GetPageList">
             <summary>
             获取列表
             </summary>
@@ -48,6 +32,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ReactAntdServer.Api.Controllers.BooksController.Get(System.String)">
+            <summary>
+            format 特征可以设置返回特定的格式类型 .{format?}
+            统一设置返回类型后此设置无效 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="F:ReactAntdServer.Api.Enums.ApiVersions.v1">
             <summary>
             v1
@@ -57,6 +49,27 @@
             <summary>
             v2
             </summary>
+        </member>
+        <member name="T:ReactAntdServer.Api.Filters.ValidateModelAttribute">
+            <summary>
+            模型验证切面
+            </summary>
+        </member>
+        <member name="T:ReactAntdServer.Api.Attributes.CustomRouteAttribute">
+            <summary>
+            自定义路由 /api/{version}/[controler]/[action]
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Api.Attributes.CustomRouteAttribute.GroupName">
+            <summary>
+            分组名称,是来实现接口 IApiDescriptionGroupNameProvider
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Attributes.CustomRouteAttribute.#ctor(ReactAntdServer.Api.Enums.ApiVersions)">
+            <summary>
+            自定义路由构造函数，继承基类路由
+            </summary>
+            <param name="version"></param>
         </member>
         <member name="P:ReactAntdServer.Api.Jwt.PermissionHandler.Schemes">
             <summary>
@@ -165,6 +178,19 @@
             <summary>
             职能
             </summary>
+        </member>
+        <member name="T:ReactAntdServer.Api.Utils.ObjectExtension">
+            <summary>
+            扩展方法
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.GetValidationSummary(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary,System.String)">
+            <summary>
+            扩展model验证错误信息
+            </summary>
+            <param name="modelState"></param>
+            <param name="separator"></param>
+            <returns></returns>
         </member>
         <member name="M:ReactAntdServer.Api.Utils.ObjectExtension.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>

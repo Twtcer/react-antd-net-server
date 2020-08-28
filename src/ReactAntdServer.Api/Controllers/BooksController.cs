@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ReactAntdServer.Api.Attributes;
 using ReactAntdServer.Api.Enums;
 using ReactAntdServer.Model;
-using ReactAntdServer.Services; 
+using ReactAntdServer.Service.Impl;
 
 namespace ReactAntdServer.Api.Controllers
 {
@@ -16,6 +17,7 @@ namespace ReactAntdServer.Api.Controllers
     //[Route("api/[controller]")]
     [CustomRoute]
     [ApiController]
+    [EnableCors("AllowSpecificOrigin")]
     public class BooksController: ControllerBase
     {
         private readonly BookService _bookService;
@@ -44,11 +46,12 @@ namespace ReactAntdServer.Api.Controllers
         }
 
         /// <summary>
-        /// format 特征可以设置返回特定的格式类型
+        /// format 特征可以设置返回特定的格式类型 .{format?}
+        /// 统一设置返回类型后此设置无效 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id:length(24)}.{format?}", Name ="GetBook")]
+        [HttpGet("{id:length(24)}", Name ="GetBook")]
         public ActionResult<Book> Get(string id)
         {
             var book = _bookService.Get(id);

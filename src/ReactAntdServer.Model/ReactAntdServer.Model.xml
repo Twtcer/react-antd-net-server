@@ -29,5 +29,250 @@
             Author
             </summary>
         </member>
+        <member name="P:ReactAntdServer.Model.Dto.IResult.Code">
+            <summary>
+            结果状态码
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.IResult.Message">
+            <summary>
+            提示信息
+            </summary>
+            <example>操作成功</example>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.IResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.IResult`1.Data">
+            <summary>
+            返回的附带数据
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.ResultWrapper.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.ResultWrapper.Code">
+            <summary>
+            结果码
+            </summary>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.ResultWrapper.Message">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.#ctor">
+            <summary>
+            返回结果，默认成功
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.#ctor(ReactAntdServer.Model.Dto.ResultCode,System.String)">
+            <summary>
+            返回结果
+            </summary>
+            <param name="code">状态码</param>
+            <param name="message">提示信息</param>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromCode(ReactAntdServer.Model.Dto.ResultCode,System.String)">
+            <summary>
+            返回指定code
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromError(System.String,ReactAntdServer.Model.Dto.ResultCode)">
+             <summary>
+            返回错误信息 
+             </summary>
+             <param name="message"></param>
+             <param name="code"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.Ok(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromCode``1(ReactAntdServer.Model.Dto.ResultCode,System.String)">
+            <summary>
+            返回指定code
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromError``1(System.String,ReactAntdServer.Model.Dto.ResultCode)">
+             <summary>
+            返回错误信息 
+             </summary>
+             <param name="message"></param>
+             <param name="code"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.Ok``1(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromData``1(``0)">
+            <summary>
+            返回数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.FromData``1(``0,System.String)">
+            <summary>
+            返回数据和提示信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.ResultWrapper.Ok``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ReactAntdServer.Model.Dto.ResultWrapper`1">
+            <summary>
+            返回数据包装
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ReactAntdServer.Model.Dto.ResultWrapper`1.Data">
+            <summary>
+            返回业务数据
+            </summary>
+        </member>
+        <member name="T:ReactAntdServer.Model.Dto.ResultCode">
+            <summary>
+            api return code enum
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.Ok">
+             <summary>
+             操作成功
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.Fail">
+             <summary>
+             操作失败
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.LoginFail">
+             <summary>
+             登陆失败
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.NoRecord">
+             <summary>
+             没有该数据
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.NoSuchUser">
+             <summary>
+             用户不存在
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.Unauthorized">
+             <summary>
+             未登录
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.Forbidden">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.InvalidToken">
+            <summary>
+            无效Token
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.InvalidData">
+            <summary>
+            参数验证失败
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.ResultCode.InvalidUser">
+            <summary>
+            无效用户
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.ShortName">
+            <summary>
+            短名称
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="F:ReactAntdServer.Model.Dto.DisplayProperty.Prompt">
+            <summary>
+            水印信息
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.DisplayName(System.Enum)">
+            <summary>
+            获取枚举说明
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.DisplayShortName(System.Enum)">
+            <summary>
+            获取枚举短名称说明
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.DisplayPrompt(System.Enum)">
+            <summary>
+            获取枚举水印信息
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.DisplayDescription(System.Enum)">
+            <summary>
+            获取枚举备注
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.Display(System.Enum,ReactAntdServer.Model.Dto.DisplayProperty)">
+            <summary>
+            获取枚举指定的显示内容
+            </summary>
+        </member>
+        <member name="M:ReactAntdServer.Model.Dto.Extentions.Display(System.Reflection.MemberInfo,ReactAntdServer.Model.Dto.DisplayProperty)">
+            <summary>
+            获取枚举指定的显示内容
+            </summary>
+        </member>
     </members>
 </doc>
